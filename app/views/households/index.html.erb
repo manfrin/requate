@@ -2,10 +2,6 @@
 
 <table>
   <tr>
-    <th>Household bill</th>
-    <th>Household member</th>
-    <th>Household regular bill</th>
-    <th>Address entry</th>
     <th>Household name</th>
     <th></th>
     <th></th>
@@ -14,10 +10,6 @@
 
 <% @households.each do |household| %>
   <tr>
-    <td><%= household.household_bill_id %></td>
-    <td><%= household.household_member_id %></td>
-    <td><%= household.household_regular_bill_id %></td>
-    <td><%= household.address_entry_id %></td>
     <td><%= household.household_name %></td>
     <td><%= link_to 'Show', household %></td>
     <td><%= link_to 'Edit', edit_household_path(household) %></td>
