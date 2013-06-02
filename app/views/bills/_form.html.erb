@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :household %><br />
-    <%= f.select :household_id, options_for_select(@households) %>
+    <%= f.collection_select :household_id, Household.all, :id, :household_name  %>
   </div>
   <div class="actions">
     <%= f.submit %>
