@@ -1,4 +1,7 @@
 Reqate::Application.routes.draw do
+  resources :households
+
+
   resources :bills
 
 

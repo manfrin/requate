@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Household bill:</b>
+  <%= @household.household_bill_id %>
+</p>
+
+<p>
+  <b>Household member:</b>
+  <%= @household.household_member_id %>
+</p>
+
+<p>
+  <b>Household regular bill:</b>
+  <%= @household.household_regular_bill_id %>
+</p>
+
+<p>
+  <b>Address entry:</b>
+  <%= @household.address_entry_id %>
+</p>
+
+<p>
+  <b>Household name:</b>
+  <%= @household.household_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_household_path(@household) %> |
+<%= link_to 'Back', households_path %>
