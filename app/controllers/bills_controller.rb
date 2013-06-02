@@ -64,6 +64,7 @@ class BillsController < ApplicationController
   # PUT /bills/1.json
   def update
     @bill = Bill.find(params[:id])
+    p params
 
     respond_to do |format|
       if @bill.update_attributes(params[:bill])
