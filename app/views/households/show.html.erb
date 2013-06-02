@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Household bill:</b>
-  <%= @household.household_bill_id %>
+  <b>Household bills:</b>
+  <% @household.bills.each do |b| %>
+    <%= link_to(b.id, b) %>
+  <% end %>
 </p>
 
 <p>

@@ -15,6 +15,10 @@
     <%= f.label :cent_value %><br />
     <%= f.text_field :cent_value %>
   </div>
+  <div class="field">
+    <%= f.label :household %><br />
+    <%= f.select :household_id, options_for_select(@households) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

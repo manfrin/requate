@@ -25,6 +25,10 @@ class BillsController < ApplicationController
   # GET /bills/new.json
   def new
     @bill = Bill.new
+    @households = []
+    h = Household.all
+    h.each { |h| @households << [h.household_name, h.id]}
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +39,9 @@ class BillsController < ApplicationController
   # GET /bills/1/edit
   def edit
     @bill = Bill.find(params[:id])
+    @households = []
+    h = Household.all
+    h.each { |h| @households << [h.household_name, h.id]}
   end
 
   # POST /bills
