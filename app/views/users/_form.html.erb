@@ -17,7 +17,12 @@
   </div>
   <div class="field">
     <%= f.label :households %><br />
-    <%= f.collection :households, Household.all, :id, :household_name %>
+    <% Household.all.each do |household| -%>
+      <div>
+        <%= check_box_tag :household_ids, household.id, @user.households.include?(household), :name => 'user[household_ids][]' -%>
+        <%= label_tag :household_ids, household.household_name -%>
+      </div>
+    <% end -%>
   </div>
   <div class="actions">
     <%= f.submit %>

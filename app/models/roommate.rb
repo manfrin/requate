@@ -1,4 +1,4 @@
 class Roommate < ActiveRecord::Base
-	belongs_to :users
-	belongs_to :households
+	belongs_to :user
+	belongs_to :household
 end

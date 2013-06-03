@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :roommates, :bills, :households
+  attr_accessible :email, :roommates, :bills, :household_ids
 
   has_many :bills
   has_many :roommates
