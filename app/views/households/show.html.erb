@@ -12,15 +12,12 @@
   <%= @household.household_name %>
 </p>
 
-<<<<<<< Updated upstream
-=======
 <p>
   <b>Household Roommates:</b>
   <% @household.users.each do |r| %>
     <%= link_to(r.email, r) %>
   <% end %>
 </p>
->>>>>>> Stashed changes
 
 <%= link_to 'Edit', edit_household_path(@household) %> |
 <%= link_to 'Back', households_path %>

@@ -5,15 +5,12 @@
   <%= @user.email %>
 </p>
 
-<<<<<<< Updated upstream
-=======
 <p>
   <b>Households:</b>
   <% @user.households.each do |h| %>
   	<%= link_to(h.household_name, h) %>
   <% end %>
 </p>
->>>>>>> Stashed changes
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
