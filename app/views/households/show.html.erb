@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Household bills:</b>
+  <% @household.bills.each do |b| %>
+    <%= link_to(b.id, b) %>
+  <% end %>
+</p>
+
+<p>
+  <b>Household name:</b>
+  <%= @household.household_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_household_path(@household) %> |
+<%= link_to 'Back', households_path %>
