@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cent value:</b>
+  <%= @bill.cent_value %>
+  <%= link_to(@bill.household.household_name, @bill.household) %>
+</p>
+
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>

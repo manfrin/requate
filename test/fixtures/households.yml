@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  household_bill_id: 1
+  household_member_id: 1
+  household_regular_bill_id: 1
+  address_entry_id: 1
+  household_name: MyString
+
+two:
+  household_bill_id: 1
+  household_member_id: 1
+  household_regular_bill_id: 1
+  address_entry_id: 1
+  household_name: MyString
