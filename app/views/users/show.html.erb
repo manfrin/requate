@@ -12,5 +12,27 @@
   <% end %>
 </p>
 
+<p>
+  <b>Total Owed:</b>
+  <%= @user.total_owed %>
+</p>
+
+<br />
+<table>
+  <tr>
+    <th>Household</th>
+    <th>Paid</th>
+    <th>Owed</th>
+  </tr>
+  <% @roommate_array.each do |ra| %>
+    <tr>
+      <td><%= link_to(ra.household.household_name, ra.household) %></td>
+      <td><%= ra.paid_to_household %></td>
+      <td><%= ra.owes_to_household %></td>
+    </tr>
+  <% end %>
+</table>
+<br />
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -4,4 +4,12 @@ class User < ActiveRecord::Base
   has_many :bills
   has_many :roommates
   has_many :households, through: :roommates
+
+  def total_owed
+  	total = 0
+  	roommates.each do |r|
+  		total += r.owes_to_household
+  	end
+  	total
+  end
 end
