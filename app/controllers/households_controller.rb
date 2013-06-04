@@ -14,6 +14,8 @@ class HouseholdsController < ApplicationController
   # GET /households/1.json
   def show
     @household = Household.find(params[:id])
+    @total_bills = @household.total_bills
+    @roommate_array = @household.roommates
 
     respond_to do |format|
       format.html # show.html.erb

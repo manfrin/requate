@@ -4,4 +4,14 @@ class Household < ActiveRecord::Base
   has_many :bills
   has_many :roommates
   has_many :users, through: :roommates
+
+  def total_bills
+  	total = 0
+    bills.each{|b| total += b.cent_value}
+    total
+  end
+
+  def roommates_in_household
+  	users.count
+  end
 end

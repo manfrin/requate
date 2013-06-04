@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Household bills:</b>
+  <h1><%= @household.household_name %></h1>
+</p>
+
+<p>
+  <b>Household Bills:</b>
   <% @household.bills.each do |b| %>
     <%= link_to(b.id, b) %>
   <% end %>
 </p>
-
 <p>
-  <b>Household name:</b>
-  <%= @household.household_name %>
+  <b>Household Total Owed:</b>
+  <%= @total_bills %>
 </p>
 
 <p>
@@ -18,6 +21,21 @@
     <%= link_to(r.email, r) %>
   <% end %>
 </p>
-
+<br />
+<table>
+  <tr>
+    <th>Roommate</th>
+    <th>Paid</th>
+    <th>Owed</th>
+  </tr>
+  <% @roommate_array.each do |ra| %>
+    <tr>
+      <td><%= link_to(ra.user.email, ra.user) %></td>
+      <td><%= ra.paid_to_household %></td>
+      <td><%= ra.owes_to_household %></td>
+    </tr>
+  <% end %>
+</table>
+<br />
 <%= link_to 'Edit', edit_household_path(@household) %> |
 <%= link_to 'Back', households_path %>
