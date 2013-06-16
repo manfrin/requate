@@ -12,7 +12,18 @@ class Roommate < ActiveRecord::Base
 	end
 
 	def owes_to_household
-		(household.total_bills / household.roommates_in_household) - paid_to_household
+		total = 0
+		Payment.where(to: id).each { |b| total+= b.cent_value}
+		Payment.where(from: id).each { |b| total -= b.cent_value}
+
+		total
+	end
+
+	def owed_from_household
+		total = 0
+		Payment.where(to: id).each { |b| total+= b.cent_value}
+
+		total
 	end
 
 	def roommate_string
