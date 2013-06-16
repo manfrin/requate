@@ -19,6 +19,11 @@
     <%= f.label :household %><br />
     <%= f.collection_select :household_id, Household.all, :id, :household_name  %>
   </div>
+  <div class="field">
+    <%= f.label :roommate %><br />
+    <%= f.collection_select :roommate_id, Roommate.all, :id, :roommate_string  %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
