@@ -7,6 +7,8 @@ Reqate::Application.routes.draw do
 
   resources :bills
 
+  match 'payments/repay' => 'payments#repay'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

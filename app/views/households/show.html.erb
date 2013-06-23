@@ -48,7 +48,7 @@
     <tr> 
       <td><%= r.user.email %></td>
       <% @roommate_array.each do |rx| %>
-        <td><%= r.owes_to_roommate(rx) %></td>
+        <td><%= link_to(r.owes_to_roommate(rx), :controller => 'payments', :action => 'repay', :from=> r, :to=> rx) %></td>
       <% end %>
     </tr>
   <% end %>
