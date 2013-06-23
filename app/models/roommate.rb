@@ -11,6 +11,13 @@ class Roommate < ActiveRecord::Base
 		total
 	end
 
+	def paid_back_to_household
+		total = 0
+		Payment.where(from: id, repayment_needed: false, initial_bill_split: false).each { |b| total+= b.cent_value}
+
+		total
+	end
+
 	def owes_to_household
 		total = 0
 		Payment.where(to: id, repayment_needed: true).each { |b| total+= b.cent_value}

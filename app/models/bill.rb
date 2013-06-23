@@ -11,7 +11,7 @@ class Bill < ActiveRecord::Base
   	split_amount = cent_value / roommates.count
 
   	roommates.each do |r|
-  		Payment.create(from: roommate_id, to: r.id, cent_value: split_amount) unless r.id == roommate_id
+  		Payment.create(from: roommate_id, to: r.id, cent_value: split_amount, initial_bill_split: true) unless r.id == roommate_id
   	end
   end
 end	

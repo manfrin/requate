@@ -26,12 +26,14 @@
   <tr>
     <th>Roommate</th>
     <th>Paid</th>
+    <th>Paid Back</th>
     <th>Owes</th>
   </tr>
   <% @roommate_array.each do |ra| %>
     <tr>
       <td><%= link_to(ra.user.email, ra.user) %></td>
       <td><%= ra.paid_to_household %></td>
+      <td><%= ra.paid_back_to_household %></td>
       <td><%= ra.owes_to_household %></td>
     </tr>
   <% end %>

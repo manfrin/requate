@@ -1,0 +1,63 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="#">Requate</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="divider"></li>
+
+      <li class="has-dropdown"><%= link_to 'Households', "/households" %>
+        <ul class="dropdown">
+          <li><%= link_to 'All Households', "/households" %></li>
+          <li><%= link_to 'New Household', "/households/new" %></li>
+          <li class="has-dropdown"><%= link_to 'Specific Household', "#" %>
+            <ul class="dropdown">
+              <% Household.all.each do |h| %>
+                <li><%= link_to h.household_name, h %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li class="divider"></li>
+
+      <li class="has-dropdown"><%= link_to 'Users', "/users" %>
+        <ul class="dropdown">
+          <li><%= link_to 'All Users', "/users" %></li>
+          <li><%= link_to 'New User', "/users/new" %></li>
+          <li class="has-dropdown"><%= link_to 'Specific User', "#" %>
+            <ul class="dropdown">
+              <% User.all.each do |u| %>
+                <li><%= link_to u.email, u %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li class="divider"></li>
+
+      <li class="has-dropdown"><%= link_to 'Bills', "/bills" %>
+        <ul class="dropdown">
+          <li><%= link_to 'All Bills', "/bills" %></li>
+          <li><%= link_to 'New Bill', "/bills/new" %></li>
+          <li class="has-dropdown"><%= link_to 'Specific Bill', "#" %>
+            <ul class="dropdown">
+              <% Bill.all.each do |u| %>
+                <li><%= link_to u.cent_value, u %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>
