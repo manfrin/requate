@@ -13,8 +13,8 @@ class Roommate < ActiveRecord::Base
 
 	def owes_to_household
 		total = 0
-		Payment.where(to: id).each { |b| total+= b.cent_value}
-		Payment.where(from: id).each { |b| total -= b.cent_value}
+		Payment.where(to: id, repayment_needed: true).each { |b| total+= b.cent_value}
+		Payment.where(from: id, repayment_needed: true).each { |b| total -= b.cent_value}
 
 		total
 	end
@@ -28,5 +28,21 @@ class Roommate < ActiveRecord::Base
 
 	def roommate_string
 		"#{user.email} - #{household.household_name}"
+	end
+
+	def owes_to_roommate roommate
+		total = 0
+		Payment.where(to: id, from: roommate.id, repayment_needed: true).each { |b| total+= b.cent_value}
+		Payment.where(from: id, to: roommate.id, repayment_needed: true).each { |b| total -= b.cent_value}
+
+		total
+	end
+
+	def owed_by_roommate roommate
+		total = 0
+		Payment.where(from: id, to: roommate.id, repayment_needed: true).each { |b| total+= b.cent_value}
+		Payment.where(to: id, from: roommate.id, repayment_needed: true).each { |b| total -= b.cent_value}
+
+		total
 	end
 end

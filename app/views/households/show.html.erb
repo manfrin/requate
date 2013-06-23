@@ -36,6 +36,24 @@
     </tr>
   <% end %>
 </table>
+
+<table>
+  <tr>
+    <th></th>
+    <% @roommate_array.each do |r| %>
+      <th><%= r.user.email %></th>
+    <% end %>
+  </tr>
+  <% @roommate_array.each do |r| %>
+    <tr> 
+      <td><%= r.user.email %></td>
+      <% @roommate_array.each do |rx| %>
+        <td><%= r.owes_to_roommate(rx) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
 <br />
 <%= link_to 'Edit', edit_household_path(@household) %> |
 <%= link_to 'Back', households_path %>
