@@ -50,11 +50,28 @@
     <tr> 
       <td><%= r.user.email %></td>
       <% @roommate_array.each do |rx| %>
-        <td><%= link_to(r.owes_to_roommate(rx), :controller => 'payments', :action => 'repay', :from=> r, :to=> rx) %></td>
+        <td><%= r.owes_to_roommate(rx) %> <% if r.owes_to_roommate(rx) > 0 %> <button class="small radius success button"><%= link_to('Repay', :controller => 'payments', :action => 'repay', :from=> r, :to=> rx) %></button><% end %></td>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+<table>
+  <tr>
+    <th>Repayments</th>
+    <th>Repay</th>
+  </tr>
+  <% @household.owes_list.each do |entry| %>
+    <tr>
+      <td><%= entry[:display_string] %>
+      </td>
+      <td>
+        <button class="small radius success button"><%= link_to('Repay', :controller => 'payments', :action => 'repay', :from=> entry[:to_pay_roommate], :to=> entry[:paid_roommate]) %></button>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
 
 <br />
 <%= link_to 'Edit', edit_household_path(@household) %> |

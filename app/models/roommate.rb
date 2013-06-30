@@ -20,21 +20,22 @@ class Roommate < ActiveRecord::Base
 
 	def owes_to_household
 		total = 0
-		Payment.where(to: id, repayment_needed: true).each { |b| total+= b.cent_value}
-		Payment.where(from: id, repayment_needed: true).each { |b| total -= b.cent_value}
+		Payment.where(to: self.id, repayment_needed: true).each { |b| total+= b.cent_value}
+		Payment.where(from: self.id, repayment_needed: true).each { |b| total -= b.cent_value}
 
 		total
 	end
 
 	def owed_from_household
 		total = 0
-		Payment.where(to: id).each { |b| total+= b.cent_value}
-
+		Payment.where(from: id, repayment_needed: true).each { |b| total+= b.cent_value}
+		Payment.where(to: id, repayment_needed: true).each { |b| total -= b.cent_value}
 		total
 	end
 
 	def roommate_string
-		"#{user.email} - #{household.household_name}"
+		name = household.try(:household_name) || 'Guest'
+		"#{user.email} - #{name}"
 	end
 
 	def owes_to_roommate roommate
@@ -51,5 +52,13 @@ class Roommate < ActiveRecord::Base
 		Payment.where(to: id, from: roommate.id, repayment_needed: true).each { |b| total -= b.cent_value}
 
 		total
+	end
+
+	def open_owed_from_count
+		Payment.where(from: id, repayment_needed: true).count
+	end
+
+	def can_collapse
+		(open_owed_from_count > 0) # TODO
 	end
 end
