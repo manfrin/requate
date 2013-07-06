@@ -32,9 +32,9 @@
   <% @roommate_array.each do |ra| %>
     <tr>
       <td><%= link_to(ra.user.email, ra.user) %></td>
-      <td><%= ra.paid_to_household %></td>
-      <td><%= ra.paid_back_to_household %></td>
-      <td><%= ra.owes_to_household %></td>
+      <td><%= number_to_currency(ra.paid_to_household/100.0) %></td>
+      <td><%= number_to_currency(ra.paid_back_to_household/100.0) %></td>
+      <td><%= number_to_currency(ra.owes_to_household/100.0) %></td>
     </tr>
   <% end %>
 </table>
@@ -50,7 +50,16 @@
     <tr> 
       <td><%= r.user.email %></td>
       <% @roommate_array.each do |rx| %>
-        <td><%= r.owes_to_roommate(rx) %> <% if r.owes_to_roommate(rx) > 0 %> <button class="small radius success button"><%= link_to('Repay', :controller => 'payments', :action => 'repay', :from=> r, :to=> rx) %></button><% end %></td>
+        <td><%= number_to_currency(r.owes_to_roommate(rx)/100.0) %> 
+          <% if r.owes_to_roommate(rx) > 0 %> 
+            <%= link_to('Repay', {controller: 'payments', 
+                                 action: 'repay', 
+                                 from: r, to: rx,
+                                 confirm: "Repay #{number_to_currency(r.owes_to_roommate(rx)/100.0)}?"},
+                                 {class: "tiny success button"}) 
+                                 %>
+          <% end %>
+        </td>
       <% end %>
     </tr>
   <% end %>
@@ -66,7 +75,7 @@
       <td><%= entry[:display_string] %>
       </td>
       <td>
-        <button class="small radius success button"><%= link_to('Repay', :controller => 'payments', :action => 'repay', :from=> entry[:to_pay_roommate], :to=> entry[:paid_roommate]) %></button>
+        <%= link_to('Repay', {:controller => 'payments', :action => 'repay', :from=> entry[:to_pay_roommate], :to=> entry[:paid_roommate]}, {class: "small radius success button"}) %>
       </td>
     </tr>
   <% end %>

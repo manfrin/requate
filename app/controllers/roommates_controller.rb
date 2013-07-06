@@ -1,0 +1,3 @@
+class RoommatesController < ApplicationController
+
+end

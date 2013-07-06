@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630064109) do
+ActiveRecord::Schema.define(:version => 20130706204212) do
 
   create_table "bills", :force => true do |t|
     t.integer  "cent_value",   :default => 0
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130630064109) do
     t.datetime "updated_at",                  :null => false
     t.integer  "household_id"
     t.integer  "roommate_id"
+    t.string   "bill_type"
   end
 
   create_table "households", :force => true do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130630064109) do
     t.integer "cent_value"
     t.boolean "repayment_needed",   :default => true
     t.boolean "initial_bill_split", :default => false
+    t.integer "related_bill_id"
   end
 
   create_table "roommates", :force => true do |t|

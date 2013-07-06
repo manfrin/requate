@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
 		amount = from.owes_to_roommate(to)
 
 		Payment.create(from: from.id, to: to.id, cent_value: amount, repayment_needed: false)
-		Payment.where(from: to.id, to: from.id).each {|p| p.update_attributes(repayment_needed: false)}
+		Payment.where(from: to.id, to: from.id, repayment_needed: true).each {|p| p.update_attributes(repayment_needed: false)}
 
 		redirect_to from.household
 	end
