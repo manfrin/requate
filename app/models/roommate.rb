@@ -58,6 +58,10 @@ class Roommate < ActiveRecord::Base
 		Payment.where(from: id, repayment_needed: true).count
 	end
 
+	def owes_to_roommate_count roommate
+		Payment.where(from: roommate.id, to: id, repayment_needed: true).count
+	end
+
 	def can_collapse
 		(open_owed_from_count > 0) # TODO
 	end
